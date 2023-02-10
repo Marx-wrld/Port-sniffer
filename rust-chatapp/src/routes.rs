@@ -20,3 +20,25 @@ type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 pub async fn index() -> impl Responder {
     NamedFile::open_async("./static/index.html").await.unwrap()
 }
+
+//Since we already registered all the dependencies we need in the main.rs file, we can just pass the dependecy to the function parameter
+pub async fn chat_server(
+    req: HttpRequest,
+    stream: web::Payload,
+    pool: web::Data<DbPool>,
+    srv: web::Data<Addr<server::ChatServer>>,
+) -> Result<HttpResponse, Error> {
+    ws::start(
+        session::WsChatSession {
+            id: 0,
+            hb: Instant::now(),
+            room: "main".to_string(),
+            name: None,
+            addr: srv.get_ref().clone(),
+            db_pool: pool,
+        },
+        &req,
+        stream
+    )
+}
+
