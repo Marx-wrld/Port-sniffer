@@ -6,7 +6,7 @@ const HEARBEET: Duration = Duration::from_secs(5);
 const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
 type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
-//Creating structs to store all the data we need
+//Creating structs to store all the data we need.
 
 #[derive(Debug)]
 pub struct WsChatSession {
@@ -32,7 +32,6 @@ struct ChatMessage {
     pub user_id: String,
     pub id: usize,
 }
-
 
 //Creating structs:-
 //WsChatSession: To make a custom implementation of the Actix Web actor
