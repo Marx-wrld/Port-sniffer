@@ -1,2 +1,2 @@
-# Rust-chat-App
-A real-time chat app built with Rust and React, that offers functionality for chat, checking user status, and indicating when a user is typing. We’ll use WebSockets to enable the two-way client-server communication.
+# Cli-Chat-App
+Implementing a terminal chat app using publish and subscribe messaging way of service.

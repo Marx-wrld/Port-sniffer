@@ -1,0 +1,11 @@
+C:\Users\MARX\Desktop\chat-app\rustchat\target\debug\deps\cookie_store-34b6b10ca04e59e1.rmeta: C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\lib.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_domain.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_expiration.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_path.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_store.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\utils.rs
+
+C:\Users\MARX\Desktop\chat-app\rustchat\target\debug\deps\cookie_store-34b6b10ca04e59e1.d: C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\lib.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_domain.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_expiration.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_path.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_store.rs C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\utils.rs
+
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\lib.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_domain.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_expiration.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_path.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\cookie_store.rs:
+C:\Users\MARX\.cargo\registry\src\github.com-1ecc6299db9ec823\cookie_store-0.7.0\src\utils.rs:
