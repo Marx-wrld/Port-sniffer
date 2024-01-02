@@ -10,7 +10,6 @@ use cursive::view::ScrollStrategy;
 use cursive::views::{BoxView, Dialog, DummyView, EditView, LinearLayout, ScrollView, TextView};
 use custom_error::custom_error;
 
-
 fn main() {
     println!("Hello, world!");
 }
