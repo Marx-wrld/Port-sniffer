@@ -13,3 +13,16 @@ use custom_error::custom_error;
 fn main() {
     println!("Hello, world!");
 }
+
+// Creating a custom error
+
+custom_error! {ChatError
+    JSONError{source: serde_json::error::Error} = @{
+        source.to_string()
+    },
+    ReqwestError{source: reqwest::Error } = @{
+        source.to_string().split(": ").collect::<Vec<&str>>()[1]
+    },
+    Unknown = "unknown error"
+}
+
