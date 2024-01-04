@@ -26,3 +26,27 @@ custom_error! {ChatError
     Unknown = "unknown error"
 }
 
+//Defining structs for Rust Json Response
+
+#[derive(Deserialize)]
+struct Response {
+    t: Time,
+    m: Vec<MessageResp>,
+}
+
+#[derive(Deserialize)]
+struct MessageResp {
+    d: Message,
+}
+
+#[derive(Deserialize)]
+struct Time {
+    t: String,
+}
+
+//Message is a sub object of MessageResp
+#[derive(Serialize, Deserialize)]
+struct Message {
+    uuid: String,
+    text: String,
+}
