@@ -47,7 +47,7 @@ struct Message {
     text: String,
 }
 
-// Creating two threads: a thread that searches for new messages arriving and a thread for our UI
+//Asynchronous Rust(multithreading) Creating two threads: a thread that searches for new messages arriving and a thread for our UI
 
 fn main() {
 
@@ -56,6 +56,37 @@ fn main() {
     let (channel_sender, channel_receiver) = channel();
     let (mut msg_sender, msg_receiver) = channel();
     
-    //... 
-    //REST OF THE MAIN FUNCTION 
+    //create a thread using spawn, which is the simplest way to create new threads in Rust
+    //Create a seperate thread, this allows us to have a subscribe loop that wont stop the UI from updating
+    let _handle1 = thread::spawn(move || {
+        let mut time_token = "".to_string();
+        //We wait for the UI to send us the channel name
+        let test_channel = channel_receiver.recv();
+
+        // When we receive a variable from another thread, we don’t know if it is an error or not. If the value is “Ok,” unwrap it into a string
+        if test_channel.is_ok() {
+
+            let channel_name: String = test_channel.unwrap();
+            loop {
+                //We call the subscribe function, which returns a Result type
+                let result: Result<String, ChatError> = subscribe(&time_token, &mut msg_sender, &channel_name);
+            }
+        }
+        if result.is_ok() {
+            //We update the time_token var to get all messages that happened after that specific time.
+            time_token = result.ok().unwrap();
+        } else if result.is_err() {
+            let err = result.unwrap_err();
+            //If the request times out, thats okay, we just restart it with that same time token, looking for new messages.
+            if err.to_string() != "timed out" {
+                println!(
+                    "Error: {:?} 
+                    Please restart application to try again.",
+                    err.to_string()
+                );
+                break;
+            }
+        }
+
+    }
 }
