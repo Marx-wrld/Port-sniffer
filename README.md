@@ -1,3 +1,2 @@
-# Port-sniffer
-
-Implementing a CLI port sniffer in rust.
+# Cli-Chat-App
+Implementing a terminal chat app using publish and subscribe messaging way of service.
