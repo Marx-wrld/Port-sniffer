@@ -50,7 +50,7 @@ impl Arguments { // impl is a keyword that defines an implementation block
             return Ok(Arguments { flag: String::from(""), ipaddr, threads: 4 }); 
             // return an Arguments struct with the ipaddr field set to the IP address
         } else {
-            let flag = args[1].clone(); // args[1] is the first argument passed to the program
+            // let flag = args[1].clone(); // args[1] is the first argument passed to the program
             if flag.contains("-h") || flag.contains("-help") && args.len() == 2 {
                 // flag.contains("-h") returns true if the flag contains "-h"
                 // flag.contains("-help") returns true if the flag contains "-help"
@@ -80,6 +80,9 @@ impl Arguments { // impl is a keyword that defines an implementation block
             return Err("invalid syntax");
         }
     }
+}
+fn get_flag(&self) -> &String {
+    &self.flag
 }
 }
 
@@ -155,4 +158,5 @@ fn main() {
     for v in out { // for v in out iterates through the vector
         println!("{} is open", v);
     }
+    println!("Flag: {}", arguments.get_flag());
 }
