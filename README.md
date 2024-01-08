@@ -1,3 +1,4 @@
 # Cli-Chat-App
 
-Implementing a CLI port sniffer tool in rust.
+Implementing a CLI port sniffer tool in Rust.
+
