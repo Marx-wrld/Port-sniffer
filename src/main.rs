@@ -1,5 +1,11 @@
-use std::{env, net::IpAddr, str::FromStr}; // env is a module that provides access to environment variables
-use std::str::process; // process is a module that provides access to the current process
+use std::{env, str::FromStr}; // env is a module that provides access to environment variables
+use std::net::{IpAddr, TcpStream}; // net is a module that provides networking primitives
+use std::io::{self, Write}; // io is a module that provides input and output
+use std::process; // process is a module that provides access to the current process
+use std::sync::mpsc::{Sender, channel}; // mpsc is a module that provides multiple producer, single consumer channels
+use std::thread; // thread is a module that provides the spawn function
+
+const MAX: u16 = 65535; // The maximum ports that we can sniff
 
 struct Arguments { // Arguments is a struct that contains the flag, ipaddr, and threads fields
     flag: String,
@@ -77,6 +83,38 @@ impl Arguments { // impl is a keyword that defines an implementation block
 }
 }
 
+
+fn scan(tx: Sender<u16>, start_port: u16, addr: IpAddr, num_threads: u16){
+    // Sender<u16> is a Sender that sends a u16
+    // start_port is the starting port
+    // addr is the IP address
+    // num_threads is the number of threads
+
+    let mut port: u16 = start_port + 1; // start_port + 1 is assigned to the port variable
+    loop {
+        match TcpStream::connect((addr, port)) { 
+            // std::net::TcpStream::connect((addr, port)) returns a TcpStream if the port is open
+            Ok(_) => {
+                // Ok(_) is a variant of Result that indicates success
+                // if std::net::TcpStream::connect((addr, port)) returns Ok(_), then the port is open
+                println!("{} is open", port);
+                io::stdout().flush().unwrap(); // io::stdout().flush() flushes the standard output stream
+                tx.send(port).unwrap_or_else(|error| eprintln!("{}", error));
+                // tx.send(port) sends the port to the Sender
+                // tx.send(port).unwrap_or_else(|error| eprintln!("{}", error)) returns an error if the port cannot be sent to the Sender
+            }
+            Err(_) => {} // Err(_) is a variant of Result that indicates failure
+        }
+        if (MAX - port) <= num_threads {
+            // if (MAX - port) <= num_threads returns true, then the program will break out of the loop
+            // if (MAX - port) <= num_threads returns false, then the program will continue to the next line
+            break;
+        }
+        port += num_threads;
+        // port += num_threads increments the port by the number of threads
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect(); // collect() returns a vector of the arguments passed to the program
 
@@ -96,4 +134,25 @@ fn main() {
             }
         }
     );
+
+    let num_threads = arguments.threads; // arguments.threads is the number of threads
+    let (tx, rx) = channel(); // channel() returns a Sender and Receiver
+    for i in 0..num_threads { // for i in 0..num_threads iterates through the number of threads
+        let tx = tx.clone(); // tx.clone() returns a copy of the Sender
+        thread::spawn(move || { // thread::spawn() spawns a thread
+            scan(tx, i, arguments.ipaddr, num_threads); // scan() scans the IP address
+        });
+    }
+
+    let mut out = vec![]; // vec![] returns a vector
+    drop(tx); // drop(tx) drops the Sender
+    for p in rx { // for p in rx iterates through the Receiver
+        out.push(p); // out.push(p) pushes the port to the vector
+    }
+
+    println!("");
+    out.sort(); // out.sort() sorts the vector
+    for v in out { // for v in out iterates through the vector
+        println!("{} is open", v);
+    }
 }
