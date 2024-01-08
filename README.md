@@ -8,3 +8,4 @@ Implementing a CLI port sniffer tool in Rust.
 ```
 cargo run -- -j 1000 <ip_address>
 ```
+Enter your router's ip address e.g - 192.168.1.1
