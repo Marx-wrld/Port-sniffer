@@ -6,3 +6,5 @@ Implementing a CLI port sniffer tool in Rust.
 2. Inside the project open a terminal and run:
 
 ```
+cargo run -- -j 1000 <ip_address>
+```
